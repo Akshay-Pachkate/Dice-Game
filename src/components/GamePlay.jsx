@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import NumberSelector from "./NumberSelector";
 import TotalScore from "./TotalScore";
 import RoleDice from './RoleDice';
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
+import { enqueueSnackbar } from 'notistack';
 
 const GamePlay = () => {
 
@@ -10,13 +11,28 @@ const GamePlay = () => {
     const [selectedNumber, setSelectedNumber] = useState();
     const [score, setScore] = useState(0);
     
-    useEffect(() => {
-        if(!selectedNumber){
-            return;
+
+    const roleDice = () => {
+        if (selectedNumber) {
+          const n = Math.floor(Math.random() * 6 + 1);
+          setRolledNumber(() => n);
+          rolledNumber === selectedNumber ? setScore((prev) => prev+selectedNumber) : setScore((prev) => prev-1);
+        } else {
+          enqueueSnackbar("Select a Number to Start", {variant: "info", anchorOrigin: {horizontal: "center", vertical: "top"} })
         }
-        rolledNumber === selectedNumber ? setScore((prev) => prev+selectedNumber) : setScore((prev) => prev-1);
-        console.log(rolledNumber === selectedNumber);
-    }, [rolledNumber]);
+
+        setSelectedNumber(undefined);
+
+      };
+
+
+    // useEffect(() => {
+    //     if(!selectedNumber){
+    //         return;
+    //     }
+        
+    //     console.log(rolledNumber === selectedNumber);
+    // }, [rolledNumber]);
 
  
 
@@ -33,6 +49,7 @@ const GamePlay = () => {
         </div>
         <div className="bottom-section">
         <RoleDice
+        roleDice={roleDice}
         setScore={setScore}
         selectedNumber={selectedNumber}
         rolledNumber={rolledNumber}

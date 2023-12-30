@@ -23,7 +23,7 @@ const NumberSelector = ({selectedNumber, setSelectedNumber}) => {
             })}
 
         </div>
-        <p style={{color: selectedNumber ? "black" : "gainsboro"}}>Selected Number {selectedNumber}</p>
+        <p style={{color: selectedNumber ? "black" : "gainsboro"}} className="prevent-select" >Selected Number {selectedNumber}</p>
     </SelectorContainer>
   )
 }

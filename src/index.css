@@ -10,3 +10,10 @@ body{
   margin: 0;
   padding: 0;
 }
+
+/* prevents text from being selected */
+.prevent-select {
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+}

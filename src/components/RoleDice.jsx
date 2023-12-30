@@ -2,19 +2,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import ShowRules from "./ShowRules";
-import { enqueueSnackbar } from 'notistack';
 
-const RoleDice = ({ setScore, selectedNumber, rolledNumber, setRolledNumber }) => {
+
+const RoleDice = ({ setScore, rolledNumber, roleDice }) => {
   const [showRules, setShowRules] = useState(false);
 
-  const roleDice = () => {
-    if (selectedNumber) {
-      const n = Math.floor(Math.random() * 6 + 1);
-      setRolledNumber(() => n);
-    } else {
-      enqueueSnackbar("Select a Number to Start", {variant: "info", anchorOrigin: {horizontal: "center", vertical: "top"} })
-    }
-  };
 
   console.log(rolledNumber);
 
